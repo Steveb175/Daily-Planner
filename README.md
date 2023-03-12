@@ -1,4 +1,4 @@
-# Javascript-Quiz
+# Daily-Planner
 
 ## Description
 
@@ -12,7 +12,7 @@ The purpose of this application is to provide users with a quick and easy schedu
 
 ## URL
 
-https://steveb175.github.io/Javascript-Quiz/
+https://steveb175.github.io/Daily-Planner/
 
 ## License
 

@@ -5,14 +5,12 @@ setInterval(function currentTime() {
 }, 1000);
 
 // Current time
-/////////ISSUE WITH THIS SHOWING GMT AND NOT CST---- SO DISPLAYING UNDERNEATH ACTIVE TIME FOR REMINDER//////////
-dayjs.tz.setDefault;
+
 var currentTime = dayjs();
 
 // Sets current time to hour
 
 currentTime = currentTime.startOf("hour");
-$("#test-time").text(currentTime);
 
 // Time set at the start of the day (+9 hours)
 var beginningTime = dayjs().startOf("day").add(9, "hours");

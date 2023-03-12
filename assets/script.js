@@ -1,23 +1,18 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-
 // Current Date and Time
-$("#currentDay").text(dayjs().format("dddd, MMM D, hh:mm a"));
+$("#currentDay").text(dayjs().format("dddd, MMM D, hh:mm:ss a"));
 setInterval(function currentTime() {
-  $("#currentDay").text(dayjs().format("dddd, MMM D, hh:mm a"));
+  $("#currentDay").text(dayjs().format("dddd, MMM D, hh:mm:ss a"));
 }, 1000);
 
 // Current time
-
+/////////ISSUE WITH THIS SHOWING GMT AND NOT CST---- SO DISPLAYING UNDERNEATH ACTIVE TIME FOR REMINDER//////////
+dayjs.tz.setDefault;
 var currentTime = dayjs();
 
 // Sets current time to hour
 
 currentTime = currentTime.startOf("hour");
 $("#test-time").text(currentTime);
-
-// Current
 
 // Time set at the start of the day (+9 hours)
 var beginningTime = dayjs().startOf("day").add(9, "hours");
@@ -29,39 +24,102 @@ $(".saveBtn").click(function () {
   localStorage.setItem(listHour, inputValue);
 });
 
-//for loop to loop through and get from local storage --IT WORKS!
+//array to be used with for loop in ready function
 var businessHoursArray = [9, 10, 11, 12, 1, 2, 3, 4, 5];
-for (var i = 0; i < businessHoursArray.length; i++) {
-  var dataSetHour = localStorage.getItem(businessHoursArray[i]);
-  $("#input" + businessHoursArray[i]).val(dataSetHour);
-}
 
 $(document).ready(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
+  pastPresentFuture();
+  //for loop to loop through and get from local storage --IT WORKS!
+  for (var i = 0; i < businessHoursArray.length; i++) {
+    var dataSetHour = localStorage.getItem(businessHoursArray[i]);
+    $("#input" + businessHoursArray[i]).val(dataSetHour);
+  }
 });
 
-// function pastPresentFuture() {
-//   businessHour9 = dayjs().startOf("day").add(9, "hours");
-//   currentTime = currentTime.startOf("hour");
-//   if (currentTime.isAfter(businessHour9)) {
-//     $("#input9").addClass("past");
-//   } else if (current {
-//   }
-// }
+// Business hours from beginning hour 9 + hours after
+var hour9 = beginningTime;
+hour9.format("hh:mm a");
+var hour10 = beginningTime.add(1, "hour");
+hour10.format("hh:mm a");
+var hour11 = beginningTime.add(2, "hour");
+hour11.format("hh:mm a");
+var hour12 = beginningTime.add(3, "hour");
+hour12.format("hh:mm a");
+var hour1 = beginningTime.add(4, "hour");
+hour1.format("hh:mm a");
+var hour2 = beginningTime.add(5, "hour");
+hour2.format("hh:mm a");
+var hour3 = beginningTime.add(6, "hour");
+hour3.format("hh:mm a");
+var hour4 = beginningTime.add(7, "hour");
+hour4.format("hh:mm a");
+var hour5 = beginningTime.add(8, "hour");
+hour5.format("hh:mm a");
+
+// Function to determine if past/present/future using the business hour variables above
+function pastPresentFuture() {
+  currentTime = currentTime.startOf("hour");
+  if (currentTime.isAfter(hour9)) {
+    $("#input9").addClass("past");
+  } else if (currentTime.isBefore(hour9)) {
+    $("#input9").addClass("future");
+  } else if (currentTime.isSame(hour9)) {
+    $("#input9").addClass("present");
+  }
+  if (currentTime.isAfter(hour10)) {
+    $("#input10").addClass("past");
+  } else if (currentTime.isBefore(hour10)) {
+    $("#input10").addClass("future");
+  } else if (currentTime.isSame(hour10)) {
+    $("#input10").addClass("present");
+  }
+  if (currentTime.isAfter(hour11)) {
+    $("#input11").addClass("past");
+  } else if (currentTime.isBefore(hour11)) {
+    $("#input11").addClass("future");
+  } else if (currentTime.isSame(hour11)) {
+    $("#input11").addClass("present");
+  }
+  if (currentTime.isAfter(hour12)) {
+    $("#input12").addClass("past");
+  } else if (currentTime.isBefore(hour12)) {
+    $("#input12").addClass("future");
+  } else if (currentTime.isSame(hour12)) {
+    $("#input12").addClass("present");
+  }
+  if (currentTime.isAfter(hour1)) {
+    $("#input1").addClass("past");
+  } else if (currentTime.isBefore(hour1)) {
+    $("#input1").addClass("future");
+  } else if (currentTime.isSame(hour1)) {
+    $("#input1").addClass("present");
+  }
+  if (currentTime.isAfter(hour2)) {
+    $("#input2").addClass("past");
+  } else if (currentTime.isBefore(hour2)) {
+    $("#input2").addClass("future");
+  } else if (currentTime.isSame(hour2)) {
+    $("#input2").addClass("present");
+  }
+  if (currentTime.isAfter(hour3)) {
+    $("#input3").addClass("past");
+  } else if (currentTime.isBefore(hour3)) {
+    $("#input3").addClass("future");
+  } else if (currentTime.isSame(hour3)) {
+    $("#input3").addClass("present");
+  }
+  if (currentTime.isAfter(hour4)) {
+    $("#input4").addClass("past");
+  } else if (currentTime.isBefore(hour4)) {
+    $("#input4").addClass("future");
+  } else if (currentTime.isSame(hour4)) {
+    $("#input4").addClass("present");
+  }
+  if (currentTime.isAfter(hour5)) {
+    $("#input5").addClass("past");
+  } else if (currentTime.isBefore(hour5)) {
+    $("#input5").addClass("future");
+  } else if (currentTime.isSame(hour5)) {
+    $("#input5").addClass("present");
+  }
+}
